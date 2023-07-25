@@ -5,7 +5,7 @@ const fs = require(`fs`);
 const { randomUUID } = require("crypto");
 const { error } = require("console");
 // const api = require('./')
-const PORT = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 //middleware 
 app.use(express.json());
