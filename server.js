@@ -45,7 +45,30 @@ app.post('/api/notes', (req, res) => {
     })
   }
 })
+// DELETE ROUTE
+app.delete('/api/notes/:id', (req, res) => {
+  const handleDelete = req.params.id
 
+  if (handleDelete) {
+    fs.readFile('./db/db.json', 'utf-8', (error,data) => {
+      if (error) {
+        res.status(500).json('ERROR 500');
+      } else {
+        let toHandleDelete = JSON.parse (data);
+        let tempdelete = toHandleDelete.filter((item) => {
+          if (item.id !== handleDelete) {
+            return item;
+          }
+        })
+
+        //write to file to update db.json with the deletions
+        fs.writeFile('./db/db.json', JSON.stringify(tempdelete), (error) => {
+          res.status(200).json('NOTE HAS BEEN SUCESSFULLY DELETED');
+        })
+      }
+    })
+  }
+})
 
 
 
