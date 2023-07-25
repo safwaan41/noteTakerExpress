@@ -19,10 +19,13 @@ app.get('/', (req, res) => {
 app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 });
+
 //get route for retreiving notes (like local storage)
-app.get('/api/notes', (req, res) =>
-  readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
-);
+app.get('/api/notes', (req,res)=>{
+  fs.readFile('./db/db.json', 'utf-8', (error, data) => {
+    res.json(JSON.parse(data))
+  })
+})
 //POST ROUTE 
 app.post('/api/notes', (req, res) => {
   const { title, text } = req.body
@@ -41,8 +44,9 @@ app.post('/api/notes', (req, res) => {
       })}
     })
   }
-
 })
+
+
 
 
 
