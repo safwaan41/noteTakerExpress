@@ -7,6 +7,7 @@
 - [Use](#use)
 - [License](#license)
 - [Questions](#questions)
+- [Screenshot](#screenshot)
 ## Description
 This application allows the user to save and delete notes hosted on a server
 
